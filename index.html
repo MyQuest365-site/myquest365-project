@@ -3,48 +3,91 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>MyQuest365 Dashboard</title>
+  <title>MyQuest365</title>
+
+  <!-- Google Font: Poppins -->
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600&display=swap" rel="stylesheet">
+
   <style>
     body {
-      font-family: Arial, sans-serif;
-      background: #f2f6f9;
+      font-family: 'Poppins', sans-serif;
+      background-color: #f4f9ff;
       margin: 0;
       padding: 0;
+      color: #333;
     }
-    header {
+    header, footer {
       background-color: #003366;
       color: white;
-      padding: 1rem 2rem;
       text-align: center;
+      padding: 1rem 0;
     }
-    .welcome {
+    main {
       padding: 2rem;
-      text-align: center;
+      max-width: 960px;
+      margin: 0 auto;
     }
-    .welcome h1 {
-      color: #003366;
+    h1, h2 {
+      text-align: center;
+      margin-bottom: 1rem;
     }
     .dashboard {
-      display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
-      gap: 1rem;
-      padding: 2rem;
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: center;
+      gap: 1.5rem;
+      margin-top: 2rem;
     }
     .card {
-      background: white;
-      border-radius: 10px;
+      background-color: white;
+      border-radius: 12px;
       padding: 1.5rem;
-      box-shadow: 0 2px 6px rgba(0,0,0,0.1);
+      width: 220px;
+      box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+      transition: transform 0.2s;
+    }
+    .card:hover {
+      transform: translateY(-5px);
     }
     .card h3 {
       margin-top: 0;
+      color: #003366;
     }
-    .footer {
-      background: #003366;
-      color: white;
+    section.calc {
+      background: white;
+      padding: 2rem;
+      margin-top: 3rem;
+      border-radius: 12px;
+      box-shadow: 0 4px 8px rgba(0,0,0,0.1);
       text-align: center;
-      padding: 1rem;
-      margin-top: 2rem;
+    }
+    label, input {
+      margin: 0.5rem 0;
+      display: block;
+    }
+    input {
+      padding: 0.4rem;
+      width: 80%;
+      max-width: 300px;
+      margin: 0 auto;
+    }
+    button {
+      margin-top: 1rem;
+      padding: 0.6rem 1.2rem;
+      background-color: #003366;
+      color: white;
+      border: none;
+      border-radius: 5px;
+      cursor: pointer;
+    }
+    button:hover {
+      background-color: #002244;
+    }
+    #result {
+      margin-top: 1.5rem;
+      font-weight: bold;
+      font-size: 1.2rem;
+      color: #003366;
     }
   </style>
 </head>
@@ -54,34 +97,196 @@
     <h1>Welcome to MyQuest365</h1>
   </header>
 
-  <section class="welcome">
-    <h1>Your College Quest Starts Now</h1>
-    <p>Track your progress, milestones, and next steps in your journey from 9th grade to college admission.</p>
-  </section>
+  <main>
+    <h2>Your College Quest Starts Now</h2>
+    <p style="text-align:center;">Track your progress, milestones, and next steps in your journey from 9th grade to college admission.</p>
 
-  <section class="dashboard">
-    <div class="card">
-      <h3>✅ Tasks</h3>
-      <p>Keep track of upcoming tasks and deadlines.</p>
+    <div class="dashboard">
+      <div class="card">
+        <h3>✅ Tasks</h3>
+        <p>Keep track of upcoming tasks and deadlines.</p>
+      </div>
+      <div class="card">
+        <h3>📈 Progress</h3>
+        <p>See how far you’ve come and what’s next.</p>
+      </div>
+      <div class="card">
+        <h3>📚 Resources</h3>
+        <p>Helpful links and guides on college planning.</p>
+      </div>
+      <div class="card">
+        <h3>📝 Notes</h3>
+        <p>Write down ideas, goals, and reminders.</p>
+      </div>
     </div>
-    <div class="card">
-      <h3>📈 Progress</h3>
-      <p>See how far you’ve come and what’s next.</p>
-    </div>
-    <div class="card">
-      <h3>📚 Resources</h3>
-      <p>Helpful links and guides on college planning.</p>
-    </div>
-    <div class="card">
-      <h3>📝 Notes</h3>
-      <p>Write down ideas, goals, and reminders.</p>
-    </div>
-  </section>
 
-  <footer class="footer">
-    &copy; 2025 MyQuest365. All rights reserved.
+    <section class="calc">
+      <h2>Estimate Your Admission Chance</h2>
+      <label for="gpa">GPA:</label>
+      <input type="number" id="gpa" step="0.01" placeholder="e.g. 3.8" />
+
+      <label for="sat">SAT Score:</label>
+      <input type="number" id="sat" step="10" placeholder="e.g. 1250" />
+
+      <button onclick="calculateChance()">Estimate</button>
+
+      <p id="result"></p>
+    </section>
+  </main>
+
+  <footer>
+    <p>&copy; 2025 MyQuest365. All rights reserved.</p>
   </footer>
+
+  <!-- JavaScript -->
+  <script>
+    function calculateChance() {
+      const gpa = parseFloat(document.getElementById('gpa').value);
+      const sat = parseInt(document.getElementById('sat').value);
+      const avgGPA = 3.4;
+      const avgSAT = 1150;
+      let score = 50;
+
+      if (gpa >= avgGPA) score += 15;
+      else if (gpa >= avgGPA - 0.3) score += 10;
+      else score += 5;
+
+      if (sat >= avgSAT) score += 15;
+      else if (sat >= avgSAT - 100) score += 10;
+      else score += 5;
+
+      score = Math.min(score, 95);
+      document.getElementById('result').innerText = `Your estimated chance: ${score}%`;
+    }
+  </script>
 
 </body>
 </html>
+<style>
+  body {
+    font-family: 'Poppins', sans-serif;
+    background-color: #f4f9ff;
+    margin: 0;
+    padding: 0;
+    color: #333;
+  }
 
+  header, footer {
+    background: linear-gradient(90deg, #4e54c8, #8f94fb);
+    color: white;
+    text-align: center;
+    padding: 1rem 0;
+  }
+
+  main {
+    padding: 2rem;
+    max-width: 900px;
+    margin: 0 auto;
+  }
+
+  h1, h2 {
+    text-align: center;
+  }
+
+  .dashboard {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 1rem;
+    margin-top: 2rem;
+  }
+
+  .card {
+    background-color: white;
+    border-radius: 10px;
+    padding: 1rem;
+    width: 200px;
+    box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+    transition: transform 0.2s ease;
+  }
+
+  .card:hover {
+    transform: translateY(-5px);
+  }
+
+  section.calc {
+    background: white;
+    padding: 2rem;
+    margin-top: 2rem;
+    border-radius: 10px;
+    box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+    text-align: center;
+  }
+
+  label, input {
+    margin: 0.5rem;
+    display: block;
+  }
+
+  input {
+    padding: 0.5rem;
+    width: 80%;
+    max-width: 300px;
+    border-radius: 5px;
+    border: 1px solid #ccc;
+    margin: 0.5rem auto;
+  }
+
+  button {
+    margin-top: 1rem;
+    padding: 0.5rem 1rem;
+    background: #4e54c8;
+    color: white;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+  }
+
+  button:hover {
+    background: #6b70f5;
+  }
+
+  #result {
+    margin-top: 1rem;
+    font-weight: bold;
+    font-size: 1.1rem;
+  }
+</style>
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>College Lookup</title>
+</head>
+<body>
+  <h1>College Info Lookup</h1>
+  <input type="text" id="collegeInput" placeholder="Enter college name (e.g., Harvard)" />
+  <button onclick="searchCollege()">Search</button>
+
+  <div id="result" style="margin-top: 20px;"></div>
+
+  <script>
+    async function searchCollege() {
+      const apiKey = "bLS9QkOcP8jTrh77sEW355xZ5gqJdlqYR1j3s4KX"; // your real key
+      const college = document.getElementById("collegeInput").value;
+      const url = `https://api.data.gov/ed/collegescorecard/v1/schools?api_key=${apiKey}&school.name=${college}&fields=school.name,school.city,latest.admissions.sat_scores.average.overall`;
+
+      const res = await fetch(url);
+      const data = await res.json();
+
+      const resultDiv = document.getElementById("result");
+      if (data.results.length > 0) {
+        const info = data.results[0];
+        resultDiv.innerHTML = `
+          <strong>Name:</strong> ${info["school.name"]}<br>
+          <strong>City:</strong> ${info["school.city"]}<br>
+          <strong>Avg SAT:</strong> ${info["latest.admissions.sat_scores.average.overall"]}
+        `;
+      } else {
+        resultDiv.innerText = "No college found with that name.";
+      }
+    }
+  </script>
+</body></html>
