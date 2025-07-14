@@ -1,8 +1,13 @@
 {
-  "devDependencies": {
-    "lite-server": "^2.6.1"
-  },  
+  "name": "myquest365",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.html",
   "scripts": {
     "start": "lite-server"
+  },
+  "devDependencies": {
+    "lite-server": "^2.6.1"
   }
 }
+
