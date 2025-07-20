@@ -1,0 +1,123 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Coming Soon – MyQuest365</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <style>
+    body {
+      margin: 0;
+      padding: 0;
+      font-family: 'Segoe UI', sans-serif;
+      background: linear-gradient(to bottom right, #f0f4ff, #d0e4ff);
+      color: #333;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      height: 100vh;
+      animation: fadeIn 1.5s ease-in-out;
+    }
+
+    .container {
+      text-align: center;
+      max-width: 700px;
+      padding: 2rem;
+      background: white;
+      border-radius: 20px;
+      box-shadow: 0 12px 40px rgba(0,0,0,0.15);
+    }
+
+    h1::after {
+      content: '|';
+      animation: blink 1s infinite;
+      color: #0077cc;
+    }
+
+    h1 {
+      font-size: 2.2rem;
+      font-weight: 700;
+      margin-bottom: 0.5rem;
+      white-space: nowrap;
+      overflow: hidden;
+      border-right: 0.15em solid #0077cc;
+      animation: typing 3s steps(30, end), blink 0.75s step-end infinite;
+    }
+
+    @keyframes typing {
+      from { width: 0 }
+      to { width: 100% }
+    }
+
+    @keyframes blink {
+      50% { opacity: 0 }
+    }
+
+    p {
+      font-size: 1.1rem;
+      margin-top: 1rem;
+    }
+
+    ul {
+      list-style: none;
+      padding: 0;
+      margin-top: 2rem;
+    }
+
+    ul li::before {
+      content: "🚀";
+      margin-right: 0.5rem;
+    }
+
+    form {
+      margin-top: 2rem;
+    }
+
+    input[type="email"] {
+      padding: 0.6rem;
+      border: 1px solid #ccc;
+      border-radius: 6px;
+      width: 70%;
+      max-width: 300px;
+    }
+
+    button {
+      padding: 0.6rem 1rem;
+      background: #0077cc;
+      color: white;
+      border: none;
+      border-radius: 6px;
+      margin-left: 0.5rem;
+      cursor: pointer;
+    }
+
+    button:hover {
+      background: #005fa3;
+    }
+
+    @keyframes fadeIn {
+      from { opacity: 0; transform: translateY(20px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <h1>MyQuest365 is launching soon</h1>
+    <p><strong>Empowering students to plan their future with clarity, confidence, and purpose — one step at a time.</strong></p>
+    
+    <p>We're building an interactive roadmap to help teens navigate college, trades, or life transitions — with structure, support, and clarity.</p>
+
+    <ul>
+      <li>Smart college & career tools</li>
+      <li>Personalized planning dashboard</li>
+      <li>Deadline tracking & reminders</li>
+      <li>Private parent/mentor portal</li>
+    </ul>
+
+    <form action="https://formspree.io/f/yourformid" method="POST">
+      <input type="email" name="email" placeholder="Get launch updates" required>
+      <button type="submit">Notify Me</button>
+    </form>
+  </div>
+</body>
+</html>
